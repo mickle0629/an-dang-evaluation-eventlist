@@ -48,21 +48,21 @@ class EventListView {
 
   editEventName(eventId, newEventName) {
     const elementEdited = document.getElementById(eventId);
-    console.log(elementEdited);
+    // console.log(elementEdited);
     const nameElement = elementEdited.getElementsByClassName("event-list-table__event-name");
     nameElement[0].textContent = newEventName;
   }
 
   editStartDate(eventId, newStartDate) {
     const elementEdited = document.getElementById(eventId);
-    console.log(elementEdited);
+    // console.log(elementEdited);
     const startDateElement = elementEdited.getElementsByClassName("event-list-table__start-date");
     startDateElement[0].textContent = newStartDate;
   }
 
   editEndDate(eventId, newEndDate) {
     const elementEdited = document.getElementById(eventId);
-    console.log(elementEdited);
+    // console.log(elementEdited);
     const endDateElement = elementEdited.getElementsByClassName("event-list-table__end-date");
     endDateElement[0].textContent = newEndDate;
   }
