@@ -42,6 +42,7 @@ const controller = new EventListController(model, view, api);
 
 // api.apiFetchEvents().then((res) => {console.log("Fetching test:",res)})
 
+//view.addEventInput()
 
 
 
