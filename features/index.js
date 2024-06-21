@@ -44,5 +44,5 @@ const controller = new EventListController(model, view, api);
 
 //view.addEventInput()
 
-
+view.prepareEditFields("30a1");
 

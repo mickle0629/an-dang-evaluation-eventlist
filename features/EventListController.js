@@ -13,6 +13,7 @@ class EventListController {
     this.updateData();
     this.setupAddEvent();
     this.setupDeleteEvent();
+    this.setupEditEvent();
   }
 
   /**
@@ -79,6 +80,18 @@ class EventListController {
         this.#view.deleteEvent(itemId);
         this.#model.deleteEvent(itemId);
       }
+    })
+  }
+
+  //out of time.
+  //place input fields in where original name, start and end dates were, then create new event listeners for a "confirm-edit button"
+  setupEditEvent() {
+    const tableBody = this.#view.tableBody;
+    tableBody.addEventListener('click', (e) => {
+      if (e.target.classList.contains("event-list-table__edit-btn")) {
+        const itemId = e.target.parentElement.parentElement.id;
+      }  
+      console.log("editing event:");
     })
   }
 }

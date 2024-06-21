@@ -48,6 +48,7 @@ class EventListView {
     this.tableBody.append(newRow)
   }
 
+  //TODO: make fields required
   addEventInput() {
     const newRow = document.createElement("tr");
     newRow.classList.add("event-list-table__new-event-row");
@@ -124,6 +125,11 @@ class EventListView {
   deleteEvent(eventId) {
     const elementDeleted = document.getElementById(eventId);
     elementDeleted.remove();
+  }
+
+  prepareEditFields(itemId) {
+    const fieldToBeEdited = document.getElementById(itemId);
+    console.log("Field to beedited", fieldToBeEdited)
   }
 
   editEventName(eventId, newEventName) {
