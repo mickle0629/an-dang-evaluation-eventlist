@@ -41,4 +41,17 @@ class EventListApi {
       return res.json();
     })
   }
+
+  async apiPutEvent(event) {
+    const { id } = event;
+    return fetch(`${this.#apiUrl}/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(event)
+    }).then((res) => {
+      return res.json();
+    })
+  }
 }

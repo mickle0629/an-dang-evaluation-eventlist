@@ -23,4 +23,11 @@ class EventListModel {
   setEvents(events) {
     this.#events = events;
   }
+
+  setEventById(eventId, newEvent) {
+    this.#events = this.#events.filter((e) => {
+      return e.id !== eventId;
+    })
+    this.addEvent(newEvent);
+  }
 }

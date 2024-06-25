@@ -35,7 +35,7 @@ class EventListView {
     endDateDatum.textContent = endDate;
 
     const buttonsCell = document.createElement("td");
-    buttonsCell.classList.add("event-list-table__row");
+    buttonsCell.classList.add("event-list-table__buttons-cell");
     const delBtn = document.createElement("button");
     delBtn.classList.add("event-list-table__del-btn")
     delBtn.textContent = "Delete"
@@ -129,7 +129,40 @@ class EventListView {
 
   prepareEditFields(itemId) {
     const fieldToBeEdited = document.getElementById(itemId);
-    console.log("Field to beedited", fieldToBeEdited)
+    const nameField = fieldToBeEdited.getElementsByClassName("event-list-table__event-name")[0];
+    const startDateField = fieldToBeEdited.getElementsByClassName("event-list-table__start-date")[0];
+    const endDateField = fieldToBeEdited.getElementsByClassName("event-list-table__end-date")[0];
+    const buttonsCell = fieldToBeEdited.getElementsByClassName("event-list-table__buttons-cell")[0];
+
+    nameField.textContent = '';
+    startDateField.textContent = '';
+    endDateField.textContent = '';
+    buttonsCell.textContent = '';
+
+    const newNameInput = document.createElement("input");
+    newNameInput.type = "text";
+    newNameInput.classList.add("event-list-table__edit-name-input");
+    nameField.append(newNameInput);
+
+    const newStartInput = document.createElement("input");
+    newStartInput.type = "date";
+    newStartInput.classList.add("event-list-table__edit-start-input")
+    startDateField.append(newStartInput);
+
+    const newEndInput = document.createElement("input");
+    newEndInput.type = "date";
+    newEndInput.classList.add("event-list-table__edit-end-input")
+    endDateField.append(newEndInput);
+    
+    const confirmEditBtn = document.createElement("button");
+    confirmEditBtn.textContent = "Confirm";
+    confirmEditBtn.classList.add("event-list-table__confirm-edit-btn");
+    const cancelEditBtn = document.createElement("button");
+    cancelEditBtn.textContent = "Cancel";
+    cancelEditBtn.classList.add("event-list-table__cancel-edit-btn");
+    buttonsCell.append(confirmEditBtn, cancelEditBtn);
+
+    console.log("Field to be edited", fieldToBeEdited)
   }
 
   editEventName(eventId, newEventName) {
@@ -152,5 +185,21 @@ class EventListView {
     const endDateElement = elementEdited.getElementsByClassName("event-list-table__end-date");
     endDateElement[0].textContent = newEndDate;
   }
+
+  rerenderEditDeleteButtons(itemId) {
+    const targetButtonsCell = document.getElementById(itemId).getElementsByClassName("event-list-table__buttons-cell")[0];
+    targetButtonsCell.textContent = '';
+    
+    const delBtn = document.createElement("button");
+    delBtn.classList.add("event-list-table__del-btn")
+    delBtn.textContent = "Delete"
+    const editBtn = document.createElement("button");
+    editBtn.classList.add("event-list-table__edit-btn")
+    editBtn.textContent = "Edit";
+
+    targetButtonsCell.append(editBtn, delBtn);
+    
+  }
 }
+
 

@@ -90,8 +90,46 @@ class EventListController {
     tableBody.addEventListener('click', (e) => {
       if (e.target.classList.contains("event-list-table__edit-btn")) {
         const itemId = e.target.parentElement.parentElement.id;
+        this.#view.prepareEditFields(itemId);
+        this.setupConfirmEditEvent()
+
       }  
       console.log("editing event:");
+
+    })
+  }
+
+  setupConfirmEditEvent() {
+    //identify the correct event being edited
+    const tableBody = this.#view.tableBody;
+    tableBody.addEventListener('click', (e) => {
+      if (e.target.classList.contains("event-list-table__confirm-edit-btn")) {
+        const itemId = e.target.parentElement.parentElement.id;
+        console.log("Confirming Edit for ItemId: ", itemId);
+
+        //grabbing input values from edit input fields. possibly move this to view
+        const nameInputValue = document.getElementById(itemId).getElementsByClassName("event-list-table__edit-name-input")[0].value;
+        const startInputValue = document.getElementById(itemId).getElementsByClassName("event-list-table__edit-start-input")[0].value;
+        const endInputValue = document.getElementById(itemId).getElementsByClassName("event-list-table__edit-end-input")[0].value;
+        
+        const editedEvent = {
+          eventName: nameInputValue,
+          startDate: startInputValue,
+          endDate: endInputValue,
+          id: itemId,
+        }
+        this.#api.apiPutEvent(editedEvent).then((res) => {
+          const { eventName, startDate, endDate, id } = res;
+          this.#view.editEventName(id, eventName);
+          this.#view.editStartDate(id, startDate);
+          this.#view.editEndDate(id, endDate);
+          this.#view.rerenderEditDeleteButtons(id);
+          
+          this.#model.setEventById(id, res);
+        });
+
+        
+      }
     })
   }
 }
