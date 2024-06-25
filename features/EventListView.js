@@ -17,31 +17,15 @@ class EventListView {
   addNewEvent(event) {
     const { eventName, startDate, endDate, id } = event;
 
-    const newRow = document.createElement("tr");
-    newRow.classList.add("event-list-table__row");
-    newRow.id = id;
-    
-    //TODO: these three are all the same, put them in a loop later
-    const eventNameDatum = document.createElement("td");
-    eventNameDatum.classList.add("event-list-table__event-name")
-    eventNameDatum.textContent = eventName;
+    const newRow = newElement("tr", "event-list-table__row", undefined, id);
 
-    const startDateDatum = document.createElement("td");
-    startDateDatum.classList.add("event-list-table__start-date")
-    startDateDatum.textContent = startDate;
+    const eventNameDatum = newElement("td", "event-list-table__event-name", eventName);
+    const startDateDatum = newElement("td", "event-list-table__start-date", startDate);
+    const endDateDatum = newElement("td", "event-list-table__end-date", endDate);
 
-    const endDateDatum = document.createElement("td");
-    endDateDatum.classList.add("event-list-table__end-date")
-    endDateDatum.textContent = endDate;
-
-    const buttonsCell = document.createElement("td");
-    buttonsCell.classList.add("event-list-table__buttons-cell");
-    const delBtn = document.createElement("button");
-    delBtn.classList.add("event-list-table__del-btn")
-    delBtn.textContent = "Delete"
-    const editBtn = document.createElement("button");
-    editBtn.classList.add("event-list-table__edit-btn")
-    editBtn.textContent = "Edit";
+    const buttonsCell = newElement("td", "event-list-table__buttons-cell");
+    const delBtn = newElement("button", "event-list-table__del-btn", "Delete");
+    const editBtn = newElement("button", "event-list-table__edit-btn", "Edit");
 
     buttonsCell.append(editBtn, delBtn);
     newRow.append(eventNameDatum, startDateDatum, endDateDatum, buttonsCell);
